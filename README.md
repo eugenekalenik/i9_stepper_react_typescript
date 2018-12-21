@@ -1,2 +1,2 @@
-i6_stepper_react
+i9_stepper_react_typescript
 # React Stepper
