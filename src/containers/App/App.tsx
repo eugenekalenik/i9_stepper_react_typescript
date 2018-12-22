@@ -108,6 +108,10 @@ class App extends Component<{}, IState> {
         <Table
           makes={makes}
         />
+        <div className="container text-right">
+          <hr />
+          <small>Updated 22.12.2018</small>
+        </div>
       </>
     );
   }
