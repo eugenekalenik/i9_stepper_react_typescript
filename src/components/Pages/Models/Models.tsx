@@ -1,33 +1,32 @@
-import React from "react";
-import { IMake } from "../../../data";
+import React, { MouseEvent } from "react";
+import { IMake } from "../../../constants";
+import { getIndexOfArrayElement } from "../../../helpers";
 import Button from "../../Button";
 
 
 interface IModelProps {
   model: string;
-  make: IMake;
+  make: string;
   makes: IMake[];
-  onChangeModel: () => void;
+  onChangeModel: (e: MouseEvent) => void;
 }
 
 const Models = (props: IModelProps) => {
   const { model, make, makes, onChangeModel } = props;
+  const models = makes.filter((m) => m.make === make)[0].models;
 
-  makes.map((item: IMake, index: number) => {
-    if (make.make === item.make) {
-      return <div key={index} className="card p-4">
-        {makes[index].models.map((model: string) =>
-          <Button
-            item={model}
-            model={model}
-            onChangeModel={onChangeModel}
-          >
-            {model}
-          </Button>,
-        )}
-      </div>;
-    }
-  });
+  return <div className="card p-4">
+    {models.map((mdl: string) =>
+      <Button
+        key={mdl}
+        item={mdl}
+        step={getIndexOfArrayElement(models, model)}
+        onClickAction={onChangeModel}
+      >
+        {mdl}
+      </Button>,
+    )}
+  </div>;
 };
 
 export default Models;

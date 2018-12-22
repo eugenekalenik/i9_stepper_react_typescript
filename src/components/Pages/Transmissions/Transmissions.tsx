@@ -1,19 +1,28 @@
-import React from 'react';
-import Button from '../../Button';
+import React, { MouseEvent } from "react";
+import Button from "../../Button";
 
 
-const Transmissions = ({ transmission, transmissions, onChangeTransmission }) => {
+interface ITransmissionsProps {
+  transmission: string;
+  transmissions: string[];
+  onChangeTransmission: (e: MouseEvent) => void;
+}
+
+const Transmissions = (props: ITransmissionsProps) => {
+  const { transmission, transmissions, onChangeTransmission } = props;
+
   return <div className="card p-4">
-    {transmissions.map(item =>
+    {transmissions.map((item: string) =>
       <Button
+        key={item}
         item={item}
-        stepName={transmission}
-        changeMethod={onChangeTransmission}
+        step={transmission}
+        onClickAction={onChangeTransmission}
       >
         {item}
-      </Button>
+      </Button>,
     )}
-  </div>
-}
+  </div>;
+};
 
 export default Transmissions;

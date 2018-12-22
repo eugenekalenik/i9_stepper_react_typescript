@@ -1,25 +1,27 @@
-import React from "react";
-import { IMake } from "../../../data";
+import React, { MouseEvent } from "react";
+import { IMake } from "../../../constants";
+import { getIndexOfArrayElement } from "../../../helpers";
 import Button from "../../Button";
 
 
 interface IMakesProps {
-  make: IMake;
+  make: string;
   makes: IMake[];
-  onChangeMake: () => void;
+  onChangeMake: (e: MouseEvent) => void;
 }
 
 const Makes = (props: IMakesProps) => {
   const { make, makes, onChangeMake } = props;
 
   return <div className="card p-4">
-    {makes.map((car: IMake) =>
+    {makes.map((item: IMake) =>
       <Button
-        item={make.make}
-        make={make.make}
-        changeMethod={onChangeMake}
+        key={item.make}
+        item={item.make}
+        step={getIndexOfArrayElement(makes.map((m: IMake) => m.make), make)}
+        onClickAction={onChangeMake}
       >
-        {car.make}
+        {item.make}
       </Button>,
     )}
   </div>;

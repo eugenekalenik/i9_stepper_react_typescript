@@ -3,29 +3,29 @@ import Buttons from "../../components/Buttons";
 import Header from "../../components/Header";
 import Pages from "../../components/Pages";
 import Table from "../../components/Table";
-import { IMake, steps } from "../../data";
+import { IMakeFromState } from "../../constants";
 
 
 interface IState {
-  makes: IMake[];
-  model: string;
   fuelType: string;
   make: string;
+  makes: IMakeFromState[];
+  model: string;
   step: number;
-  steps: string[];
   transmission: string;
 }
 
+const initialState: IState = {
+  fuelType: "",
+  make: "",
+  makes: [],
+  model: "",
+  step: 0,
+  transmission: "",
+};
+
 class App extends Component<{}, IState> {
-  public state = {
-    fuelType: "",
-    make: "",
-    makes: [],
-    model: "",
-    step: 0,
-    steps,
-    transmission: "",
-  };
+  public state = initialState;
 
   public back = () => {
     if (this.state.step === 1) {
@@ -78,14 +78,13 @@ class App extends Component<{}, IState> {
   }
 
   public render() {
-    const { step, make, model, transmission, fuelType, makes } = this.state;
+    const { step, make, makes, model, transmission, fuelType } = this.state;
 
     return (
       <>
         <Header />
         <Pages
           step={step}
-          steps={steps}
           make={make}
           model={model}
           transmission={transmission}
@@ -97,8 +96,7 @@ class App extends Component<{}, IState> {
         />
         <Buttons
           step={step}
-          steps={steps}
-          currentMake={make}
+          make={make}
           model={model}
           transmission={transmission}
           fuelType={fuelType}
@@ -107,7 +105,9 @@ class App extends Component<{}, IState> {
           onAdd={this.addCar}
           onReset={this.reset}
         />
-        <Table makes={makes} />
+        <Table
+          makes={makes}
+        />
       </>
     );
   }

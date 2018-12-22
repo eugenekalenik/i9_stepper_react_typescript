@@ -1,9 +1,9 @@
 import React from "react";
+import { steps } from "../../constants";
 
 
-interface IButtons {
+interface IButtonsProps {
   step: number;
-  steps: string[];
   make: string;
   model: string;
   transmission: string;
@@ -14,10 +14,9 @@ interface IButtons {
   onReset: () => void;
 }
 
-const Buttons = (props: IButtons) => {
+const Buttons = (props: IButtonsProps) => {
   const {
     step,
-    steps,
     make,
     model,
     transmission,

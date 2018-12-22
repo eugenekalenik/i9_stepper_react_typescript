@@ -1,1 +1,1 @@
-export { default } from './FuelTypes';
+export { default } from "./FuelTypes";

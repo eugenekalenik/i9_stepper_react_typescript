@@ -1,5 +1,5 @@
-import React from "react";
-import { fuelTypes, IMake, makes, transmissions } from "../../data";
+import React, { MouseEvent } from "react";
+import { fuelTypes, makes, steps, transmissions } from "../../constants";
 import FuelTypes from "./FuelTypes";
 import Makes from "./Makes";
 import Models from "./Models";
@@ -7,24 +7,22 @@ import Transmissions from "./Transmissions";
 
 
 interface IPagesProps {
-  model: string;
   step: number;
-  steps: string[];
-  make: IMake;
+  make: string;
+  model: string;
   transmission: string;
   fuelType: string;
-  onChangeMake: () => void;
-  onChangeModel: () => void;
-  onChangeTransmission: () => void;
-  onChangeFuelType: () => void;
+  onChangeMake: (e: MouseEvent) => void;
+  onChangeModel: (e: MouseEvent) => void;
+  onChangeTransmission: (e: MouseEvent) => void;
+  onChangeFuelType: (e: MouseEvent) => void;
 }
 
 const Pages = (props: IPagesProps) => {
   const {
-    model,
     step,
-    steps,
     make,
+    model,
     transmission,
     fuelType,
     onChangeMake,
@@ -54,7 +52,12 @@ const Pages = (props: IPagesProps) => {
         transmissions={transmissions}
         onChangeTransmission={onChangeTransmission}
       />}
-    {step === 3 && <FuelTypes fuelType={fuelType} fuelTypes={fuelTypes} onChangeFuelType={onChangeFuelType} />}
+    {step === 3 &&
+      <FuelTypes
+        fuelType={fuelType}
+        fuelTypes={fuelTypes}
+        onChangeFuelType={onChangeFuelType}
+      />}
   </div>;
 };
 

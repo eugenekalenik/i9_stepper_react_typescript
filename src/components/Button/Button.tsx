@@ -1,20 +1,19 @@
-import React from "react";
+import React, { MouseEvent } from "react";
 
 
 interface IButtonProps {
-  item: string;
-  make: string;
-  onChangeModel: () => void;
+  item?: string;
+  step?: string;
+  onClickAction?: (e: MouseEvent) => void;
 }
 
 const Button = (props: IButtonProps) => {
-  const { item, model, onChangeModel } = props;
+  const { item, step, onClickAction } = props;
 
   return (
     <button
-      key={item}
-      className={model === item ? "btn btn-warning mr-2 mb-2" : "btn btn-light mr-2 mb-2"}
-      onClick={onChangeModel}>
+      className={step === item ? "btn btn-warning mr-2 mb-2" : "btn btn-light mr-2 mb-2"}
+      onClick={onClickAction}>
       {item}
     </button>
   );

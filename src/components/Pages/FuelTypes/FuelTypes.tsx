@@ -1,11 +1,12 @@
-import React from "react";
+import React, { MouseEvent } from "react";
+import { getIndexOfArrayElement } from "../../../helpers";
 import Button from "../../Button";
 
 
 interface IFuelTypesProps {
   fuelType: string;
   fuelTypes: string[];
-  onChangeFuelType: () => void;
+  onChangeFuelType: (e: MouseEvent) => void;
 }
 
 const FuelTypes = (props: IFuelTypesProps) => {
@@ -14,9 +15,10 @@ const FuelTypes = (props: IFuelTypesProps) => {
   return <div className="card p-4">
     {fuelTypes.map((item: string) =>
       <Button
+        key={item}
         item={item}
-        stepName={fuelType}
-        changeMethod={onChangeFuelType}
+        step={getIndexOfArrayElement(fuelTypes, fuelType)}
+        onClickAction={onChangeFuelType}
       >
         {item}
       </Button>,

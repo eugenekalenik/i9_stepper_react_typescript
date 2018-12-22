@@ -1,15 +1,8 @@
 import React from "react";
-import { IMake } from "../../data";
+import { IMakeFromState } from "../../constants";
 
-interface ITableProps {
-  make: IMake;
-  makes: IMake[];
-  model: string;
-  transmission: string;
-  fuelType: string;
-}
 
-const Table = (props: ITableProps) => {
+const Table = (props: { makes: IMakeFromState[] }) => {
   const { makes } = props;
 
   if (makes.length) {
@@ -26,7 +19,7 @@ const Table = (props: ITableProps) => {
             </tr>
           </thead>
           <tbody>
-            {makes.map((make, index) => <tr key={index}>
+            {makes.map((make: IMakeFromState, index: number) => <tr key={index}>
               <td>{index + 1}</td>
               <td>{make.make}</td>
               <td>{make.model}</td>
