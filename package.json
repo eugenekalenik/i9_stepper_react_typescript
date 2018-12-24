@@ -4,11 +4,16 @@
   "private": true,
   "homepage": "https://eugenekalenik.github.io/i9_stepper_react_typescript/",
   "dependencies": {
+    "@types/jest": "^23.3.10",
+    "@types/node": "^10.12.18",
+    "@types/react": "^16.7.18",
+    "@types/react-dom": "^16.0.11",
     "bootstrap": "^4.2.1",
     "gh-pages": "^2.0.1",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "react-scripts": "2.1.1"
+    "react-scripts": "2.1.1",
+    "typescript": "^3.2.2"
   },
   "scripts": {
     "predeploy": "npm run build",
